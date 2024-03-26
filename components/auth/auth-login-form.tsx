@@ -20,8 +20,8 @@ import { FormSuccess } from '../form.success'
 import { login } from '@/actions/login'
 
 const LoginForm = () => {
-  const[success,setSuccess] = useState<string>()
-  const[error,setError] = useState<string>()
+  const[success,setSuccess] = useState<string | undefined>()
+  const[error,setError] = useState<string | undefined>()
   const[isPending,startTransition] = useTransition()
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -34,12 +34,11 @@ const LoginForm = () => {
     setError("")
     setSuccess("")
     startTransition(() => {
-      login(values).then(data => !data.success ? setError(data.error) : setSuccess(data.success))
+      login(values).then(data => data?.error ? setError(data.error) : setSuccess(data?.error))
     })
 
   }
 
-  
   return (
     <Cardwrapper
       headerLable='welcome back'

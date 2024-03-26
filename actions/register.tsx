@@ -4,6 +4,7 @@ import * as z from 'zod'
 import { RegisterSchema } from "@/schema"
 import { db } from '@/lib/db';
 import bcrypt from 'bcrypt'
+import { getUserByEmail } from '@/data/user';
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validateSchema = RegisterSchema.safeParse(values);
     if (!validateSchema.success) {
@@ -11,14 +12,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     }
     const { email, password, name } = validateSchema.data;
     const hashPassword = await bcrypt.hash(password, 10)
-    const uniqueEmail = await db.user.findUnique(
-        {
-            where: {
-                email
-            }
-        }
-    )
-    console.log(uniqueEmail);
+    const uniqueEmail = await getUserByEmail(email)
     
     if (uniqueEmail) {
         return { error: "the email is registered" }

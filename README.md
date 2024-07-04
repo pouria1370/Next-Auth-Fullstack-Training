@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next-auth Training by [codeWithAntonio](https://youtu.be/1MTyCvS05V4?si=4IEWQUpCVfb9ghhh"thelatestguidefornextAuthin2024")
+## Tech-used in current meta [^1]
+>
+> Shadcn for ui
+>
+> zod for validating
+>
+> react hook from for Form
+>
+> prisma as Orm
+>
+> Neon as data-base
+>
+> Typescript
+>
+This toturial have teached me many good stuff like:
 
-## Getting Started
+1.how he manipulate the form in standard way
 
-First, run the development server:
+2.how type must be built
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3.standard way of using next-auth with credentals and google-github providers
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4.designing the middleware for gaurding

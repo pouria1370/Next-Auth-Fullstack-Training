@@ -22,3 +22,5 @@ This toturial have teached me many good stuff like:
 3.standard way of using next-auth with credentals and google-github providers
 
 4.designing the middleware for gaurding
+
+## for more information about the project , you need at frist time take a looka t the whole project ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)

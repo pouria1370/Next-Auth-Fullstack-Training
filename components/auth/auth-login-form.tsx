@@ -18,6 +18,7 @@ import { Button } from '../ui/button'
 import { FormError } from '../form-errors'
 import { FormSuccess } from '../form.success'
 import { login } from '@/actions/login'
+import { useSearchParams } from 'next/navigation'
 
 const LoginForm = () => {
   const[success,setSuccess] = useState<string | undefined>()
@@ -38,7 +39,8 @@ const LoginForm = () => {
     })
 
   }
-
+  const searchParams = useSearchParams()
+  const authError = searchParams.get("error") === "OAuthAccountNotLinked" ? "The Email is gotten please try with different Email" : ""
   return (
     <Cardwrapper
       headerLable='welcome back'
@@ -91,7 +93,7 @@ const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message={error} />
+          <FormError message={error || authError} />
           <FormSuccess message={success} />
           <Button type='submit' disabled={isPending} className='w-full mt-5'>Login</Button>
         </form>

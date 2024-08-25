@@ -17,6 +17,10 @@ export const {
       })
     }
   },
+  pages:{
+    signIn:"/auth/login",
+    error:"/auth/error"
+  },
   callbacks: {
     // async signIn({ user, account, profile, email, credentials }) {
     //   const isUserVerified = await getUserById(user.id);
@@ -28,13 +32,13 @@ export const {
     async redirect({ url, baseUrl }) {
       return baseUrl
     },
-    async session({ session, user, token }) {
+    async session({ session,token }) {
      if(token.sub && session.user){
       session.user.userID = token.userID
      }
       return session
     },
-    async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token}) {
      token.userID = token.sub
       return token
     }

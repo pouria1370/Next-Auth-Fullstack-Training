@@ -43,3 +43,19 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model ConfirmationToken {
+  id                String @id @default(cuid())
+  token             String @unique
+  expires           DateTime
+  email             String
+
+  @@unique([email,token])
+}
+model ResetPasswordToken {
+  id                String @id @default(cuid())
+  token             String @unique
+  expires           DateTime
+  email             String
+
+  @@unique([email,token])
+}

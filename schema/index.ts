@@ -18,3 +18,13 @@ export const RegisterSchema = z.object({
         message:"two characters are compulsary"
     })
 })
+export const ResetPasswordSchema = z.object({
+    email: z.string().email({
+        message: "this email is invalid"
+    }),
+})
+export const NewResetPasswordSchema = z.object({
+    password: z.string().min(6,{
+        message:"the pasword must atleast be 6 chars"
+    }),
+})

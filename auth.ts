@@ -22,13 +22,13 @@ export const {
     error:"/auth/error"
   },
   callbacks: {
-    // async signIn({ user, account, profile, email, credentials }) {
-    //   const isUserVerified = await getUserById(user.id);
-    //   if (!isUserVerified || !isUserVerified.emailVerified) {
-    //     return false
-    //   }
-    //   return true
-    // },
+    async signIn({ user, account, profile, email, credentials }) {
+      const isUserVerified = await getUserById(user.id);
+      if (!isUserVerified || !isUserVerified.emailVerified) {
+        return false
+      }
+      return true
+    },
     async redirect({ url, baseUrl }) {
       return baseUrl
     },

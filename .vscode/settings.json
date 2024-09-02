@@ -1,14 +1,13 @@
 {
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always",
-        "source.fixAll.ts": "always",
-        "source.removeUnused.ts": "always",
-        "source.sortImports": "always",
-        "source.addMissingImports.ts": "always",
-        "source.removeUnusedImports": "always",
-
-    }
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.ts": "always",
+    "source.removeUnused.ts": "always",
+    "source.sortImports": "always",
+    "source.addMissingImports.ts": "always",
+    "source.removeUnusedImports": "always"
+  }
 }

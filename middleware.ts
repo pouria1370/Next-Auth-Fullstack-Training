@@ -21,10 +21,9 @@ export default auth((req) => {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
-    return null
+    return null;
   }
   if (!isLoggedIn && !isURLPublicRoute) {
-
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
   return null;

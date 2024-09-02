@@ -1,10 +1,8 @@
-import AuthVerificationTokenForm from '@/components/auth/auth-verification-form'
-import React from 'react'
+import AuthVerificationTokenForm from "@/components/auth/auth-verification-form";
+import React from "react";
 
 const NewVerificationPage = () => {
-  return (
-    <AuthVerificationTokenForm/>
-  )
-}
+  return <AuthVerificationTokenForm />;
+};
 
-export default NewVerificationPage
+export default NewVerificationPage;

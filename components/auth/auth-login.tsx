@@ -1,29 +1,23 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
-interface AuthLoginType  {
-mode?:"redirect" | "modal",
-asChild?: boolean,
-children: React.ReactNode
+interface AuthLoginType {
+  mode?: "redirect" | "modal";
+  asChild?: boolean;
+  children: React.ReactNode;
 }
-const AuthLogin = ({mode="modal",children,asChild}:AuthLoginType) => {
-    const router = useRouter()
-    const clickHandler = ( ) => {
+const AuthLogin = ({ mode = "modal", children, asChild }: AuthLoginType) => {
+  const router = useRouter();
+  const clickHandler = () => {
     if (mode === "redirect") {
-        router.replace('auth/login')
+      router.replace("auth/login");
     }
-    }
+  };
 
-    useEffect(() => {
-   
-    }, [])
-    
-  return (
-    <span onClick={clickHandler}>
-        {children}
-    </span>
-  )
-}
+  useEffect(() => {}, []);
 
-export default AuthLogin
+  return <span onClick={clickHandler}>{children}</span>;
+};
+
+export default AuthLogin;

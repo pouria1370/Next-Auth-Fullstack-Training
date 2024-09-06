@@ -20,3 +20,15 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
     html: `<p> please click the following Link for the confirmation <a href=${confirmationLink}>Confirm Your Email</a></p>`,
   });
 };
+
+export const sendTwoAuthenticationCode = async (
+  email: string,
+  token: string
+) => {
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: email,
+    subject: "2AF Authenticationi",
+    html: `<p>your confirmation code is : <strong>${token}</strong></p>`,
+  });
+};

@@ -22,6 +22,8 @@ model User {
   password String?
   accounts Account[]
   role     UserRole @default(User)
+  isTwoAutenticationEnabled Boolean @default(false)
+  twoAuthentication TwoAuthenticationConfirmation?
 }
 
 model Account {
@@ -58,4 +60,19 @@ model ResetPasswordToken {
   email             String
 
   @@unique([email,token])
+}
+model TwoAuthenticatinToken  {
+  id                String @id @default(cuid())
+  token             String @unique
+  expires           DateTime
+  email             String
+
+  @@unique([email,token])
+}
+
+model TwoAuthenticationConfirmation {
+id        String @id @default(cuid())
+userId    String
+user      User @relation(fields:[userId],references:[id],onDelete:Cascade)
+@@unique([userId])
 }

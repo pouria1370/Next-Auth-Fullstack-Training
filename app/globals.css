@@ -9,7 +9,25 @@ body,
 }
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /**
+    =========================== font size variables =================================
+    */
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+    --text-4xl: 48px;
+    --text-5xl: 50px;
+    --text-6xl: 64px;
+    --text-7xl: 72px;
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-md: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px
+      /**
+    =========================== colors variables =================================
+    */
+      --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;

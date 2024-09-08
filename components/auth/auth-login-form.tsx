@@ -39,13 +39,13 @@ const LoginForm = () => {
     setSuccess("");
     startTransition(() => {
       login(values).then((data) => {
-        if (data.error) {
+        if (data?.error) {
           setError(data.error);
         }
-        if (data.success) {
-          setSuccess(data.success);
+        if (data?.success) {
+          setSuccess(data?.success);
         }
-        if (data.twoAuthentication) {
+        if (data?.twoAuthentication) {
           setIsTwoAuthenticatedEnabled(true);
         }
       });

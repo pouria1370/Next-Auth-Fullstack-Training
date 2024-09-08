@@ -21,7 +21,10 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   }
   const { email, password, twoAuthentication } = validateFields.data;
   const existingUser = await getUserByEmail(email);
-  const isPassWordTrue = await bcrypt.compare(password, existingUser.password);
+  const isPassWordTrue = await bcrypt.compare(
+    password,
+    existingUser?.password ?? ""
+  );
 
   if (!existingUser || existingUser.email !== email || !isPassWordTrue) {
     return { error: "the login informatin does not exist" };

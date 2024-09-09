@@ -182,7 +182,7 @@ const SettingPage = () => {
                     <Select
                       disabled={isPending}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={user.role as UserRole}
                       value={field.value}
                     >
                       <FormControl {...field}>

@@ -9,6 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "postinstall": "prisma generate",
     "prepare": "husky",
     "check-types": "tsc --pretty --noemit",
     "check-format": "prettier --check .",

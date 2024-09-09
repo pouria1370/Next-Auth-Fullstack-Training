@@ -8,7 +8,9 @@ const LogoutButton = () => {
     <Button
       variant="ghost"
       className="gap-2 flex flex-row justify-between  text-red-600"
-      onClick={() => signOut()}
+      onClick={async () => {
+        await signOut();
+      }}
     >
       sign out
       <FaSignOutAlt />

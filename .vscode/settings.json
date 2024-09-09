@@ -5,9 +5,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.fixAll.ts": "always",
-    "source.removeUnused.ts": "always",
+    "source.removeUnused.ts": "explicit",
     "source.sortImports": "always",
     "source.addMissingImports.ts": "always",
     "source.removeUnusedImports": "always"
-  }
+  },
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true
 }

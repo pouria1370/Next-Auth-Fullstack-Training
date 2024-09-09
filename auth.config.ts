@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
+import Gitlab from "next-auth/providers/gitlab";
 import Google from "next-auth/providers/google";
 import { getUserByEmail } from "./data/user";
 import { LoginSchema } from "./schema";
@@ -29,6 +30,10 @@ export default {
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET_ID,
+    }),
+    Gitlab({
+      clientId: process.env.GITLAB_CLIENT_ID,
+      clientSecret: process.env.GITLAB_SECRET_ID,
     }),
   ],
 } satisfies NextAuthConfig;

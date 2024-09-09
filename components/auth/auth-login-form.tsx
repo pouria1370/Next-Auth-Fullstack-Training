@@ -34,11 +34,14 @@ const LoginForm = () => {
       password: "",
     },
   });
-  const submitHandler = (values: z.infer<typeof LoginSchema>) => {
+  const submitHandler = (
+    values: z.infer<typeof LoginSchema>,
+    callbackUrl?: string
+  ) => {
     setError("");
     setSuccess("");
     startTransition(() => {
-      login(values).then((data) => {
+      login(values, callbackUrl).then((data) => {
         if (data?.error) {
           setError(data.error);
         }
@@ -52,6 +55,7 @@ const LoginForm = () => {
     });
   };
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
   const authError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "The Email is gotten please try with different Email"
@@ -61,14 +65,14 @@ const LoginForm = () => {
     <Cardwrapper
       headerLable="welcome back"
       backButtonHref="/auth/register"
-      backButtonLable="Dont have ana account?"
+      backButtonLable="Dont have an account?"
       showSocial
     >
       <Form {...form}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            submitHandler(form.getValues());
+            submitHandler(form.getValues(), callbackUrl);
           }}
           className="space-y-6"
         >
@@ -85,7 +89,7 @@ const LoginForm = () => {
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="123456"
+                          placeholder="your 2af code been sent to your email"
                         ></Input>
                       </FormControl>
                       <FormMessage />
@@ -132,7 +136,7 @@ const LoginForm = () => {
                 />
                 <Link href={"/auth/reset"}>
                   <Button className="px-0 " size="sm" variant="link">
-                    Forgt your password?
+                    Forgot your password?
                   </Button>
                 </Link>
               </>

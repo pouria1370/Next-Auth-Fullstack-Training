@@ -1,12 +1,12 @@
 "use server";
 
-import * as z from "zod";
-import { RegisterSchema } from "@/schema";
-import { db } from "@/lib/db";
-import bcrypt from "bcrypt";
 import { getUserByEmail } from "@/data/user";
+import { db } from "@/lib/db";
 import { generateVerificationToken } from "@/lib/generateVerificationToken";
 import { sendVerificationEmail } from "@/lib/mail";
+import { RegisterSchema } from "@/schema";
+import bcrypt from "bcrypt";
+import * as z from "zod";
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validateSchema = RegisterSchema.safeParse(values);
   if (!validateSchema.success) {
@@ -29,6 +29,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
     const verificationToken = await generateVerificationToken(email);
     sendVerificationEmail(verificationToken.email, verificationToken.token);
-    return { success: "Confirmation Code is sent" };
+    return { success: "Confirmation Email is sent" };
   }
 };

@@ -45,7 +45,10 @@ const Navbar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src={client?.image} />
+              <AvatarImage
+                className="size-10 rounded-full"
+                src={client?.image}
+              />
               <AvatarFallback className="bg-sky-600 rounded-full">
                 <FaUser />
               </AvatarFallback>

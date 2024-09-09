@@ -1,3 +1,4 @@
+"use server";
 import { CurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { SettingSchema } from "@/schema";
@@ -9,11 +10,15 @@ import { z } from "zod";
 
 export const setting = async (values: z.infer<typeof SettingSchema>) => {
   const user = await CurrentUser();
-  const existingUser = await db.user.findUnique({ where: { id: user.id } });
+
+  const existingUser = await db?.user.findUnique({
+    where: { id: user.userID },
+  });
   const existingInputs = SettingSchema.safeParse(values);
-  if (existingInputs.error) return { error: "invalid field" };
-  if (existingInputs.data) {
-    if (user.is0Auth) {
+
+  if (existingInputs?.error) return { error: "invalid field" };
+  if (existingInputs?.data) {
+    if (user?.is0Auth) {
       await db.user.update({
         where: { id: existingUser.id },
         data: {
@@ -22,19 +27,31 @@ export const setting = async (values: z.infer<typeof SettingSchema>) => {
         },
       });
     } else {
-      if (values.password === values.newPassword)
+      const isPsswordTrue = await bcrypt.compare(
+        values?.password,
+        existingUser?.password ?? ""
+      );
+      if (values.password === values.newPassword) {
         return { error: "new-password is repetitive" };
+      }
+      if (!isPsswordTrue) {
+        return { error: "your password is not valid" };
+      }
       await db.user.update({
         where: { id: existingUser.id },
         data: {
           name: values?.name,
           role: values?.role,
-          password: (await bcrypt.hash(values.newPassword, 10)).toString(),
+          password: values.newPassword
+            ? (await bcrypt.hash(values.newPassword, 10)).toString()
+            : existingUser.password,
           email: values?.email,
           isTwoAutenticationEnabled: values?.twoAuthentication,
         },
       });
     }
+    return { success: "the update process is succeded" };
   }
-  return { success: "the update process is succeded" };
+
+  return { error: "data is not valid" };
 };

@@ -1,8 +1,9 @@
 import AuthLogin from "@/components/auth/auth-login";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { CurrentUser } from "@/lib/auth";
 
-function Home() {
+async function Home() {
+  const session = await CurrentUser();
   return (
     <main
       className="flex h-full flex-col items-center justify-center 
@@ -19,7 +20,7 @@ function Home() {
       </div>
       <AuthLogin mode="redirect">
         <Button size="lg" variant="default">
-          Login
+          {!session ? "Login" : "start"}
         </Button>
       </AuthLogin>
     </main>

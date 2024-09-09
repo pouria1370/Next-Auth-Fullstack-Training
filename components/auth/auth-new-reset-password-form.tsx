@@ -1,13 +1,9 @@
 "use client";
-import React, { useState, useTransition } from "react";
-import * as z from "zod";
-import { NewResetPasswordSchema } from "@/schema";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { setNewPassword } from "@/actions/setNewPassword";
+import Cardwrapper from "@/components/auth/auth-card-wrapper";
 import { FormError } from "@/components/form-errors";
 import { FormSuccess } from "@/components/form.success";
-import { Input } from "@/components/ui/input";
-import Cardwrapper from "@/components/auth/auth-card-wrapper";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,9 +12,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { setNewPassword } from "@/actions/setNewPassword";
+import { Input } from "@/components/ui/input";
+import { NewResetPasswordSchema } from "@/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const NewResetPasswordForm = () => {
   const [success, setSuccess] = useState<string | undefined>();
@@ -50,31 +50,35 @@ const NewResetPasswordForm = () => {
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-6">
-          <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="******"
-                      type="password"
-                    ></Input>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          {!success && (
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>New Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="******"
+                        type="password"
+                      ></Input>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button type="submit" disabled={isPending} className="w-full mt-5">
-            reset Password
-          </Button>
+          {!success && (
+            <Button type="submit" disabled={isPending} className="w-full mt-5">
+              reset Password
+            </Button>
+          )}
         </form>
       </Form>
     </Cardwrapper>

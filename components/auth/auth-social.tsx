@@ -1,15 +1,16 @@
 "use client";
 
-import React from "react";
-import { FaGithub, FaGitlab } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { Button } from "../ui/button";
-import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { FaGithub, FaGitlab, FaGoogle } from "react-icons/fa";
+import { Button } from "../ui/button";
 const Social = () => {
+  const searchParams = useSearchParams();
+  const urlCallback = searchParams.get("callbackUrl");
   const signInHandler = (provider: "github" | "google" | "gitlab") => {
     signIn(provider, {
-      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+      callbackUrl: urlCallback || DEFAULT_LOGIN_REDIRECT,
     });
   };
 

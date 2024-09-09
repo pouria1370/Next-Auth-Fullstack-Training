@@ -142,9 +142,10 @@ const SettingPage = () => {
                           <FormControl>
                             <Switch
                               disabled={isPending}
-                              checked={user?.IsTwofactoredEnabled}
+                              checked={field.value}
                               onCheckedChange={field.onChange}
                               className="bg-red-300"
+                              defaultChecked={user.IsTwofactoredEnabled}
                             />
                           </FormControl>
                         </div>
